@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/java_for_testers.iml" filepath="$PROJECT_DIR$/java_for_testers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sanbox.iml" filepath="$PROJECT_DIR$/sanbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sanbox.main.iml" filepath="$PROJECT_DIR$/.idea/modules/sanbox.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sanbox.test.iml" filepath="$PROJECT_DIR$/.idea/modules/sanbox.test.iml" />
     </modules>
   </component>
 </project>
