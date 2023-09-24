@@ -12,9 +12,6 @@ public record Triangle() {
          System.out.println("Периметр треугольника = " + perimeterTriangle);
          System.out.println("Площадь треугольника по формуле Герона =  " + Math.sqrt(perimeterTriangle * (perimeterTriangle - sideA) * (perimeterTriangle - sideB) * (perimeterTriangle - sideC)));*/
 
-
-
-
             }
 
     public static double getPerimeterTriangle(double sideA, double sideB, double sideC) {
