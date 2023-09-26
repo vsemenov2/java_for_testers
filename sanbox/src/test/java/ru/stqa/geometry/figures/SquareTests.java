@@ -30,11 +30,11 @@ public class SquareTests {
 
     @Test
     void canCalculatePerimeterTriangle(){
-        Assertions.assertEquals(8.0, Triangle.getPerimeterTriangle(5.,5.,6.));
+        Assertions.assertEquals(16.0, Triangle.getPerimeterTriangle(5.,5.,6.));
 
     }
     @Test
     void canCalculateTriangle() {
-        Assertions.assertEquals(24.49489742783178, Triangle.getTriangle(5.0, 6.0, 7.0, 10));
+        Assertions.assertEquals(14.696938456699069, Triangle.getTriangle(5.0, 6.0, 7.0));
     }
 }
