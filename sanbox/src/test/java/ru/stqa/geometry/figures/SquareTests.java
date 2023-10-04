@@ -27,18 +27,6 @@ public class SquareTests {
         }
     }
 
-
-    @Test
-    void canCalculatePerimeterTriangle(){
-        Assertions.assertEquals(16.0, Triangle.getPerimeterTriangle(5.,5.,6.));
-
-    }
-    @Test
-    void canCalculateTriangle() {
-        Assertions.assertEquals(14.696938456699069, Triangle.getTriangle(5.0, 6.0, 7.0));
-
-    }
-
     @Test
     void testEquality()    {
         var s1 = new Square(5.0);
