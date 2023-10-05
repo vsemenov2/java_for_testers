@@ -3,13 +3,17 @@ package ru.stqa.geometry.figures;
 import java.util.Objects;
 
 public record Triangle(double sideA, double sideB, double sideC) {
-     public static void SquareTriangle(double sideA, double sideB, double sideC) {
-        if (sideA < 0 || sideB < 0 || sideC < 0) {
-            throw new ArithmeticException("Сторона треугольника меньше 0");
-         }
-        if ((sideA+sideB) < sideC || (sideA + sideC) < sideB || (sideB + sideC) < sideA ){
-            throw new ArithmeticException("Сумма двух любых сторон должна быть не меньше третьей стороны");
+
+    public Triangle{
+        if ((sideA + sideB) < sideC || (sideA + sideC) < sideB || (sideB + sideC) < sideA) {
+            throw new IllegalArgumentException("Сторона треугольника меньше 0");
         }
+        if (sideA < 0 || sideB < 0 || sideC < 0){
+            throw new IllegalArgumentException("Сумма двух любых сторон должна быть не меньше третьей стороны");
+        }
+    }
+     public static void SquareTriangle(double sideA, double sideB, double sideC) {
+
          var perimeterTriangle = getPerimeterTriangle(sideA, sideB, sideC);
          var areaTriangle = getTriangle(sideA, sideB, sideC);
         System.out.println(String.format("Периметр треугольника со сторонами %f  %f  %f  = %f ", sideA, sideB, sideC, perimeterTriangle));

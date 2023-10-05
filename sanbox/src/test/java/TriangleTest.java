@@ -16,6 +16,24 @@ public class TriangleTest {
     }
 
     @Test
+    void TriangleTest () {
+        try {
+            new Triangle(-5.0, 6.0, 7.0);
+            Assertions.fail();
+        } catch (IllegalArgumentException exception){
+        }
+    }
+    @Test
+    void triangleSidesTest(){
+        try {
+            new Triangle(4.0, 5.0, 15.0);
+            Assertions.fail();
+        } catch (IllegalArgumentException exception){
+
+        }
+    }
+
+    @Test
     void testEquality(){
         var t1= new Triangle(3.0, 4.0, 5.0);
         var t2 = new Triangle(5.0, 3.0, 4.0);
