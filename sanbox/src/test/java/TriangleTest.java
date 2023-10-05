@@ -35,8 +35,15 @@ public class TriangleTest {
 
     @Test
     void testEquality(){
-        var t1= new Triangle(3.0, 4.0, 5.0);
-        var t2 = new Triangle(5.0, 3.0, 4.0);
-        Assertions.assertTrue(t1.equals(t2));
+        var a = 3;
+        var b = 4;
+        var c = 5;
+        var t1= new Triangle(a, b, c);
+        var t2 = new Triangle(a, c, b);
+        var t3 = new Triangle(b, c, a);
+        var t4 = new Triangle(b, a, c);
+        var t5 = new Triangle(c, b, a);
+        var t6 = new Triangle(c, a, b);
+        Assertions.assertTrue(t1.equals(t2)&t1.equals(t3)&t1.equals(t3)&t1.equals(t4)&t1.equals(t5)&t1.equals(t6));
     }
 }
