@@ -7,25 +7,24 @@ public class ContactCreationTests extends TestBase {
 
     @Test
     public void canCreateContact() {
-        app.openContactNewPage();
-        app.createContact(
-                new ContactDate("contact firstname", "contact middlename", "contact lastname", "contact address"));
+        app.groups().createContact(
+                new ContactDate("contact firstname", "contact middlename",
+                        "contact lastname", "contact address"));
 
     }
 
     @Test
     public void canCreateContactWithEmptyName() {
-        app.openContactNewPage();
-        app.createContact(new ContactDate());
+        app.groups().createContact(new ContactDate());
 
     }
+
     @Test
     public void canCreateContactWithEmptyFirstnameOnly() {
-        app.openContactNewPage();
-        var emtyContact = new ContactDate();
-        var contactWithFirstname = emtyContact.withFirstname("some name");
-        app.createContact(contactWithFirstname);
+        var emptyContact = new ContactDate();
+        var contactWithFirstname = emptyContact.withFirstname("some name");
+        app.groups().createContact(contactWithFirstname);
 
     }
 
-    }
+}
