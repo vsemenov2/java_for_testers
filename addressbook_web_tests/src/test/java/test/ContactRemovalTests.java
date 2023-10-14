@@ -8,13 +8,22 @@ public class ContactRemovalTests extends TestBase {
 
     @Test
     public void canRemoveContact() {
-        if (!app.groups().isContactPresent()) {
-            app.groups().createContact(
+        if (!app.contacts().isContactPresent()) {
+            app.contacts().createContact(
                     new ContactDate("contact firstname", "contact middlename",
                             "contact lastname", "contact address"));
         }
-        app.groups().removeContact();
+        app.contacts().removeContact();
 
     }
+    @Test
+    public void canRemoveContactAll() {
+        if (!app.contacts().isContactPresent()) {
+            app.contacts().createContact(
+                    new ContactDate("contact firstname", "contact middlename",
+                            "contact lastname", "contact address"));
+        }
+        app.contacts().removeContactAll(); //удалить все контакты
 
+    }
 }
