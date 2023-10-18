@@ -19,13 +19,9 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-    public boolean isContactPresent() {
-        return manager.isElementPresent(By.name("selected[]"));
-    }
 
     public void createContact(ContactDate contact) {
         openContactNewPage();
-        manager.driver.findElement(By.linkText("add new")).click();
         manager.driver.findElement(By.name("firstname")).sendKeys(contact.firstname());
         manager.driver.findElement(By.name("middlename")).sendKeys(contact.middlename());
         manager.driver.findElement(By.name("lastname")).sendKeys(contact.lastname());
@@ -33,18 +29,38 @@ public class ContactHelper extends HelperBase {
         manager.driver.findElement(By.name("submit")).click();
     }
 
-    public  void removeContact() {
+    public  void removeContacts() {
         openContactHomePage();
         manager.driver.findElement(By.name("selected[]")).click();
         manager.driver.findElement(By.cssSelector(".left:nth-child(8) > input")).click();
         //assertThat(driver.switchTo().alert().getText(), is("Delete 1 addresses?"));
         manager.driver.switchTo().alert().accept();
     }
-    public  void removeContactAll() {
+    public  void removeContactSelectAll() {
         openContactHomePage();
         manager.driver.findElement(By.id("MassCB")).click();
         manager.driver.findElement(By.cssSelector(".left:nth-child(8) > input")).click();
         //assertThat(driver.switchTo().alert().getText(), is("Delete 1 addresses?"));
         manager.driver.switchTo().alert().accept();
+    }
+
+    public int getCount() {
+        openContactHomePage();
+        return manager.driver.findElements(By.name("selected[]")).size();
+
+    }
+
+    public void removeAllContact() {
+        openContactHomePage();
+        selectAllContacts();
+        removeContacts();
+
+    }
+
+    private void selectAllContacts() {
+        var checkboxes = manager.driver.findElements(By.name("selected[]"));
+        for (var checkbox : checkboxes) {
+            checkbox.click();
+        }
     }
 }

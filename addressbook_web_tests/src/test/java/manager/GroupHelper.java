@@ -85,9 +85,6 @@ public class GroupHelper extends HelperBase {
         selectAllGroups();
         removeSelectedGroups();
 
-
-
-
     }
 
     private void selectAllGroups() {

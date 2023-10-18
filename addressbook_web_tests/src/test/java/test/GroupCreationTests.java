@@ -30,7 +30,7 @@ public class GroupCreationTests extends TestBase {
 
     @ParameterizedTest
     @MethodSource("groupProvider")
-    public void canCreateMultipledGroups(GroupData group) {
+    public void canCreateMultipleGroups(GroupData group) {
         int groupCount = app.groups().getCount();
         app.groups().createGroup(group);
         int newGroupCount = app.groups().getCount();
