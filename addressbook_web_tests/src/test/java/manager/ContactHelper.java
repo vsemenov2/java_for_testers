@@ -25,11 +25,20 @@ public class ContactHelper extends HelperBase {
 
     public void createContact(ContactDate contact) {
         openContactNewPage();
-        manager.driver.findElement(By.name("firstname")).sendKeys(contact.firstname());
-        manager.driver.findElement(By.name("middlename")).sendKeys(contact.middlename());
-        manager.driver.findElement(By.name("lastname")).sendKeys(contact.lastname());
-        manager.driver.findElement(By.name("address")).sendKeys(contact.address());
-        manager.driver.findElement(By.name("submit")).click();
+        fillContactForm(contact);
+        submitContactCreation();
+        openContactNewPage();
+    }
+
+    private void submitContactCreation() {
+        click(By.name("submit"));
+    }
+
+    private void fillContactForm(ContactDate contact) {
+        type(By.name("firstname"), contact.firstname());
+        type(By.name("middlename"), contact.middlename());
+        type(By.name("lastname"), contact.lastname());
+        type(By.name("address"), contact.address());
     }
 
     public  void removeContacts(ContactDate contact) {
@@ -89,5 +98,24 @@ public class ContactHelper extends HelperBase {
 
         }
         return contacts;
+    }
+
+    public void modifyContact(ContactDate contact, ContactDate modifiedContact) {
+        openContactHomePage();
+        selectContact(contact);
+        initContactModification();
+        fillContactForm(modifiedContact);
+        submitContactModification();
+        openContactNewPage();
+
+    }
+
+    private void submitContactModification() {
+        click(By.name("update"));
+    }
+
+    private void initContactModification() {
+        //click(By.cssSelector(".odd:nth-child(11) > .center:nth-child(8) img"));
+        click(By.cssSelector("tr:nth-child(2) > .center:nth-child(8) img"));
     }
 }
