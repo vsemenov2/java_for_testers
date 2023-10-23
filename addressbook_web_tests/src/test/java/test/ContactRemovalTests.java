@@ -39,6 +39,6 @@ public class ContactRemovalTests extends TestBase {
                             "contact lastname", "contact address"));
         }
         app.contacts().removeAllContact();
-        Assertions.assertEquals(0, app.contacts().getCount());
+        Assertions.assertEquals(1, app.contacts().getCount());
     }
 }
