@@ -39,6 +39,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("middlename"), contact.middlename());
         type(By.name("lastname"), contact.lastname());
         type(By.name("address"), contact.address());
+        attach(By.name("photo"), contact.photo());
     }
 
     public  void removeContacts(ContactDate contact) {

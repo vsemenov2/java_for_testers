@@ -15,7 +15,7 @@ public class ContactRemovalTests extends TestBase {
         if (app.contacts().getCount() == 0) {
             app.contacts().createContact(
                     new ContactDate("", "contact firstname", "contact middlename",
-                            "contact lastname", "contact address"));
+                            "contact lastname", "contact address",""));
         }
         var oldContacts = app.contacts().getList();
         var rnd = new Random();
@@ -34,7 +34,7 @@ public class ContactRemovalTests extends TestBase {
         if (app.contacts().getCount() == 0) {
             app.contacts().createContact(
                     new ContactDate("", "contact firstname", "contact middlename",
-                            "contact lastname", "contact address"));
+                            "contact lastname", "contact address", ""));
         }
         app.contacts().removeAllContact();
         Assertions.assertEquals(0, app.contacts().getCount());

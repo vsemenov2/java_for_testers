@@ -17,7 +17,8 @@ public class ContactModificationTests extends TestBase{
                     "contact firstname",
                     "contact middlename",
                     "contact lastname",
-                    "contact address" ));
+                    "contact address",
+                    ""));
         }
         var oldContacts = app.contacts().getList();
         var rnd = new Random();

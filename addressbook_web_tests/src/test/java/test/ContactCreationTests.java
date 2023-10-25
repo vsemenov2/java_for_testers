@@ -19,23 +19,27 @@ public class ContactCreationTests extends TestBase {
         for (var name : List.of("", "contact name")){
             for  (var middlename : List.of("", "contact middlename")){
                 for  (var lastname : List.of("", "contact lastname")){
-                    for  (var address : List.of("", "contact street")){
-                        result.add(new ContactDate()
-                                .withFirstname(name)
-                                .withMiddlename(middlename)
-                                .withLastname(lastname)
-                                .withAddress(address));
+                    for  (var address : List.of("", "contact street")) {
+                        for (var photo : List.of("src/test/resources/images/avatar.png")) {
+                            result.add(new ContactDate()
+                                    .withFirstname(name)
+                                    .withMiddlename(middlename)
+                                    .withLastname(lastname)
+                                    .withAddress(address)
+                                    .withPhoto(photo));
+                        }
                     }
                 }
             }
         }
 
-        for (int i = 0; i < 5; i++) {
+      for (int i = 0; i < 5; i++) {
             result.add(new ContactDate()
                     .withFirstname(randomString(i * 10 ))
                     .withMiddlename(randomString(i * 10 ))
                     .withLastname(randomString(i * 10 ))
-                    .withAddress(randomString(i * 10 )));
+                    .withAddress(randomString(i * 10 ))
+                    .withPhoto(randomFile("src/test/resources/images")));
 
         }
         return result;
@@ -57,7 +61,8 @@ public class ContactCreationTests extends TestBase {
              .withFirstname(contact.firstname())
              .withMiddlename("")
              .withLastname(contact.lastname())
-             .withAddress(""));
+             .withAddress("")
+             .withPhoto(""));
      expectedList.sort(compareById);
      Assertions.assertEquals(newContacts, expectedList);
 
@@ -65,7 +70,7 @@ public class ContactCreationTests extends TestBase {
 
     public static List<ContactDate> negativeContactProvider() {
         var result = new ArrayList<ContactDate>(List.of(
-                new ContactDate("", "contact name'", "", "", "")));
+                new ContactDate("", "contact name'", "", "", "","")));
 
         return result;
     }
