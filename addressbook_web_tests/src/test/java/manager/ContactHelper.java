@@ -27,7 +27,7 @@ public class ContactHelper extends HelperBase {
         openContactNewPage();
         fillContactForm(contact);
         submitContactCreation();
-        openContactNewPage();
+        openContactHomePage();
     }
 
     private void submitContactCreation() {
@@ -88,13 +88,18 @@ public class ContactHelper extends HelperBase {
     public List<ContactDate> getList() {
         openContactHomePage();
         var contacts = new ArrayList<ContactDate>();
-        //var trs = manager.driver.findElements(By.cssSelector("td.center"));
         var trs = manager.driver.findElements(By.xpath("//tr[@name=\'entry\']"));
         for (var tr : trs) {
-            //var name = td.getText();
+            var nameLast = tr.findElement(By.xpath(".//td[2]"));
+            var nameFirst = tr.findElement(By.xpath(".//td[3]"));
+            var getLastname = nameLast.getText();
+            var getFirstname = nameFirst.getText();
             var checkbox = tr.findElement(By.name("selected[]"));
             var id = checkbox.getAttribute("value");
-            contacts.add(new ContactDate().withId(id));
+            contacts.add(new ContactDate()
+                    .withId(id)
+                    .withLastname(getLastname)
+                    .withFirstname(getFirstname));
 
         }
         return contacts;
