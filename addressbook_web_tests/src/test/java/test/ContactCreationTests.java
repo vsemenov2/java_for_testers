@@ -1,7 +1,7 @@
 package test;
 
+import common.CommonFunctions;
 import model.ContactDate;
-import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -35,10 +35,10 @@ public class ContactCreationTests extends TestBase {
 
       for (int i = 0; i < 5; i++) {
             result.add(new ContactDate()
-                    .withFirstname(randomString(i * 10 ))
-                    .withMiddlename(randomString(i * 10 ))
-                    .withLastname(randomString(i * 10 ))
-                    .withAddress(randomString(i * 10 ))
+                    .withFirstname(CommonFunctions.randomString(i * 10 ))
+                    .withMiddlename(CommonFunctions.randomString(i * 10 ))
+                    .withLastname(CommonFunctions.randomString(i * 10 ))
+                    .withAddress(CommonFunctions.randomString(i * 10 ))
                     .withPhoto(randomFile("src/test/resources/images")));
 
         }
