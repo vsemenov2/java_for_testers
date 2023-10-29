@@ -110,9 +110,17 @@ public class ContactHelper extends HelperBase {
         openContactHomePage();
         selectContact(contact);
         initContactModification();
-        fillContactForm(modifiedContact);
+        fillContactUpdateForm(modifiedContact);
         submitContactModification();
-        openContactNewPage();
+        openContactHomePage();
+
+    }
+
+    private void fillContactUpdateForm(ContactDate contact) {
+        type(By.name("firstname"), contact.firstname());
+        type(By.name("middlename"), contact.middlename());
+        type(By.name("lastname"), contact.lastname());
+        type(By.name("address"), contact.address());
 
     }
 
