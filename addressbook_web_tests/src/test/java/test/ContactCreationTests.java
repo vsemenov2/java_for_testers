@@ -1,12 +1,18 @@
 package test;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import common.CommonFunctions;
 import model.ContactDate;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -14,34 +20,39 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-    public static List<ContactDate> contactProvider() {
+    public static List<ContactDate> contactProvider() throws IOException {
         var result = new ArrayList<ContactDate>();
-        for (var name : List.of("", "contact name")){
-            for  (var middlename : List.of("", "contact middlename")){
-                for  (var lastname : List.of("", "contact lastname")){
-                    for  (var address : List.of("", "contact street")) {
-                        for (var photo : List.of("src/test/resources/images/avatar.png")) {
-                            result.add(new ContactDate()
-                                    .withFirstname(name)
-                                    .withMiddlename(middlename)
-                                    .withLastname(lastname)
-                                    .withAddress(address)
-                                    .withPhoto(photo));
-                        }
-                    }
-                }
+//        for (var name : List.of("", "contact name")){
+//            for  (var middlename : List.of("", "contact middlename")){
+//                for  (var lastname : List.of("", "contact lastname")){
+//                    for  (var address : List.of("", "contact street")) {
+//                        for (var photo : List.of(randomFile("src/test/resources/images"))) {
+//                            result.add(new ContactDate()
+//                                    .withFirstname(name)
+//                                    .withMiddlename(middlename)
+//                                    .withLastname(lastname)
+//                                    .withAddress(address)
+//                                    .withPhoto(photo));
+//                        }
+//                    }
+//                }
+//            }
+//        }
+        var json = "";
+        try (var reader = new FileReader("contacts.json");
+             var breader = new BufferedReader(reader)
+
+        ){
+            var line = breader.readLine();
+            while (line != null){
+                json = json + line;
+                line = breader.readLine();
             }
         }
-
-      for (int i = 0; i < 5; i++) {
-            result.add(new ContactDate()
-                    .withFirstname(CommonFunctions.randomString(i * 10 ))
-                    .withMiddlename(CommonFunctions.randomString(i * 10 ))
-                    .withLastname(CommonFunctions.randomString(i * 10 ))
-                    .withAddress(CommonFunctions.randomString(i * 10 ))
-                    .withPhoto(randomFile("src/test/resources/images")));
-
-        }
+        
+        ObjectMapper mapper = new ObjectMapper();
+        var value = mapper.readValue(new File("contacts.json"), new TypeReference<List<ContactDate>>() {});
+        result.addAll(value);
         return result;
     }
 
