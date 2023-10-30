@@ -49,7 +49,7 @@ public class ContactCreationTests extends TestBase {
                 line = breader.readLine();
             }
         }
-        
+
         ObjectMapper mapper = new ObjectMapper();
         var value = mapper.readValue(new File("contacts.json"), new TypeReference<List<ContactDate>>() {});
         result.addAll(value);
