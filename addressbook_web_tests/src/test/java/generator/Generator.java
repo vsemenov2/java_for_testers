@@ -94,10 +94,10 @@ public class Generator {
             }
 
 
-        } if ("yaml".equals(format))  {
+        } else if ("yaml".equals(format))  {
             var mapper = new YAMLMapper();
             mapper.writeValue(new File(output), data);
-        } if ("xml".equals(format))  {
+        } else if ("xml".equals(format))  {
             var mapper = new XmlMapper();
             mapper.writeValue(new File(output), data);
         } else {
