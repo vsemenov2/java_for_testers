@@ -109,7 +109,7 @@ public class ContactHelper extends HelperBase {
     public void modifyContact(ContactDate contact, ContactDate modifiedContact) {
         openContactHomePage();
         selectContact(contact);
-        initContactModification();
+        initContactModification(contact);
         fillContactUpdateForm(modifiedContact);
         submitContactModification();
         openContactHomePage();
@@ -128,8 +128,7 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    private void initContactModification() {
-        //click(By.cssSelector(".odd:nth-child(11) > .center:nth-child(8) img"));
-        click(By.cssSelector("tr:nth-child(2) > .center:nth-child(8) img"));
+    private void initContactModification(ContactDate contact) {
+        click(By.cssSelector(String.format("a[href=\'edit.php?id=%s\']", contact.id())));
     }
 }
