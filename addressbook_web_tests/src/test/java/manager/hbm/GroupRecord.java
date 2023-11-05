@@ -25,8 +25,7 @@ public class GroupRecord {
 
     public Date deprecated = new Date();
 
-    public GroupRecord(){
-    }
+    public GroupRecord(){}
 
     public GroupRecord(int id, String name, String header, String footer){
 

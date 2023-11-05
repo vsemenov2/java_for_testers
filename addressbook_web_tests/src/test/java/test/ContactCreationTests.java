@@ -56,26 +56,48 @@ public class ContactCreationTests extends TestBase {
         return result;
     }
 
+    public static List<ContactDate> singleRandomContact() {
+        return List.of(new ContactDate()
+                .withFirstname(CommonFunctions.randomString(10))
+                .withMiddlename(CommonFunctions.randomString(20))
+                .withLastname(CommonFunctions.randomString(30))
+                .withAddress(CommonFunctions.randomString(40)));
+    }
+
  @ParameterizedTest
- @MethodSource("contactProvider")
-    public void canCreateMultipleContacts(ContactDate contact) {
-       var oldContacts = app.contacts().getList();
+ @MethodSource("singleRandomContact")
+    public void canCreateContact(ContactDate contact) {
+       var oldContacts = app.hbm().getContactList();
+       var oldUiContacts = app.contacts().getList();
         app.contacts().createContact(contact);
-        var newContacts = app.contacts().getList();
+        var newContacts = app.hbm().getContactList();
      Comparator<ContactDate> compareById = (o1, o2) -> {
          return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
      };
      newContacts.sort(compareById);
+     var maxId = newContacts.get(newContacts.size() - 1).id();
 
      var expectedList = new ArrayList<>(oldContacts);
-     expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id())
+     expectedList.add(contact.withId(maxId));
+     expectedList.sort(compareById);
+     Assertions.assertEquals(newContacts, expectedList);
+
+
+     var newUiContacts = app.contacts().getList();
+     Comparator<ContactDate> compareByIdUI = (o1, o2) -> {
+         return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+     };
+     newUiContacts.sort(compareByIdUI);
+     var expectedUIList = new ArrayList<>(oldUiContacts);
+     expectedUIList.add(contact.withId(newUiContacts.get(newUiContacts.size() - 1).id())
              .withFirstname(contact.firstname())
              .withMiddlename("")
              .withLastname(contact.lastname())
              .withAddress("")
              .withPhoto(""));
-     expectedList.sort(compareById);
-     Assertions.assertEquals(newContacts, expectedList);
+
+     expectedUIList.sort(compareByIdUI);
+     Assertions.assertEquals(newUiContacts, expectedUIList);
 
     }
 
