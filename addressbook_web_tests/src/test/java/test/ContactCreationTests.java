@@ -58,16 +58,20 @@ public class ContactCreationTests extends TestBase {
 
     public static List<ContactDate> singleRandomContact() {
         return List.of(new ContactDate()
-                .withFirstname(CommonFunctions.randomString(10))
-                .withMiddlename(CommonFunctions.randomString(20))
-                .withLastname(CommonFunctions.randomString(30))
-                .withAddress(CommonFunctions.randomString(40)));
+                .withFirstname(CommonFunctions.randomString(5))
+                .withMiddlename(CommonFunctions.randomString(5))
+                .withLastname(CommonFunctions.randomString(5))
+                .withNickname(CommonFunctions.randomString(5))
+                .withCompany(CommonFunctions.randomString(5))
+                .withTitle(CommonFunctions.randomString(5))
+                .withAddress(CommonFunctions.randomString(5))
+                .withHome(CommonFunctions.randomString(5)));
     }
 
  @ParameterizedTest
  @MethodSource("singleRandomContact")
     public void canCreateContact(ContactDate contact) {
-       var oldContacts = app.hbm().getContactList();
+        var oldContacts = app.hbm().getContactList();
        var oldUiContacts = app.contacts().getList();
         app.contacts().createContact(contact);
         var newContacts = app.hbm().getContactList();
@@ -93,8 +97,15 @@ public class ContactCreationTests extends TestBase {
              .withFirstname(contact.firstname())
              .withMiddlename("")
              .withLastname(contact.lastname())
+             .withNickname("")
+             .withCompany("")
+             .withTitle("")
              .withAddress("")
-             .withPhoto(""));
+             .withHome("")
+             .withMobile("")
+             .withWork(""));
+
+
 
      expectedUIList.sort(compareByIdUI);
      Assertions.assertEquals(newUiContacts, expectedUIList);
@@ -103,7 +114,8 @@ public class ContactCreationTests extends TestBase {
 
     public static List<ContactDate> negativeContactProvider() {
         var result = new ArrayList<ContactDate>(List.of(
-                new ContactDate("", "contact name'", "", "", "","")));
+                new ContactDate("", "contact name'", "", "", "","",
+                        "","", "","", "")));
 
         return result;
     }

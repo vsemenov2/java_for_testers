@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.time.Duration;
 import java.util.Properties;
 
 public class ApplicationManager  {
@@ -27,6 +28,7 @@ public class ApplicationManager  {
                 driver = new FirefoxDriver();
             } else if ("chrome".equals(browser)){
                 driver = new ChromeDriver();
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
 
             } else {
                 throw new IllegalArgumentException(String.format("Unknown browser %s", browser));

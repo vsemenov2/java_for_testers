@@ -79,7 +79,7 @@ static List<ContactDate> convertlist(List<ContactRecord> records){
 
 
     private static ContactDate convertContact(ContactRecord record) {
-        return new ContactDate("" + record.id, record.firstname, record.middlename, record.lastname, record.address, "");
+        return new ContactDate("" + record.id, record.firstname, record.middlename, record.lastname, record.nickname, record.company, record.title, record.address, record.home, record.mobile, record.work);
     }
 
     private static ContactRecord convertContact(ContactDate data) {
@@ -87,7 +87,7 @@ static List<ContactDate> convertlist(List<ContactRecord> records){
         if ("".equals(id)){
             id = "0";
         }
-        return new ContactRecord(Integer.parseInt(id), data.firstname(), data.middlename(), data.lastname(), data.address());
+        return new ContactRecord(Integer.parseInt(id), data.firstname(), data.middlename(), data.lastname(), data.nickname(), data.company(), data.title(), data.address(), data.home(), data.mobile(), data.work());
     }
 
 

@@ -39,6 +39,12 @@ public class ContactHelper extends HelperBase {
         type(By.name("middlename"), contact.middlename());
         type(By.name("lastname"), contact.lastname());
         type(By.name("address"), contact.address());
+        type(By.name("nickname"), contact.nickname());
+        type(By.name("title"), contact.title());
+        type(By.name("company"), contact.company());
+        type(By.name("home"), contact.home());
+        type(By.name("mobile"), contact.mobile());
+        type(By.name("work"), contact.work());
         //attach(By.name("photo"), contact.photo());
     }
 
@@ -53,6 +59,7 @@ public class ContactHelper extends HelperBase {
         manager.driver.findElement(By.cssSelector(".left:nth-child(8) > input")).click();
         //assertThat(driver.switchTo().alert().getText(), is("Delete 1 addresses?"));
         manager.driver.switchTo().alert().accept();
+        //manager.driver.findElement(By.cssSelector("div.msgbox"));
     }
 
     private void selectContact(ContactDate contact) {
@@ -121,6 +128,12 @@ public class ContactHelper extends HelperBase {
         type(By.name("middlename"), contact.middlename());
         type(By.name("lastname"), contact.lastname());
         type(By.name("address"), contact.address());
+        type(By.name("nickname"), contact.nickname());
+        type(By.name("title"), contact.title());
+        type(By.name("company"), contact.company());
+        type(By.name("home"), contact.home());
+        type(By.name("mobile"), contact.mobile());
+        type(By.name("work"), contact.work());
 
     }
 
