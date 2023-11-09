@@ -4,7 +4,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import common.CommonFunctions;
 import model.ContactDate;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import model.GroupData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -127,6 +129,28 @@ public class ContactCreationTests extends TestBase {
         app.contacts().createContact(contact);
         var newContacts = app.contacts().getList();
         Assertions.assertEquals(newContacts, oldContacts);
+
+    }
+    @Test
+    void canCreateContactInGroup() {
+        var contact = new ContactDate()
+                .withFirstname(CommonFunctions.randomString(5))
+                .withMiddlename(CommonFunctions.randomString(5))
+                .withLastname(CommonFunctions.randomString(5))
+                .withNickname(CommonFunctions.randomString(5))
+                .withCompany(CommonFunctions.randomString(5))
+                .withTitle(CommonFunctions.randomString(5))
+                .withAddress(CommonFunctions.randomString(5))
+                .withHome(CommonFunctions.randomString(5));
+        if (app.hbm().getGroupCount() == 0) {
+            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+        }
+        var group = app.hbm().getGroupList().get(0);
+        var oldRelated = app.hbm().getContactsInGroup(group);
+        app.contacts().createContactInGroup(contact, group);
+        var newRelated = app.hbm().getContactsInGroup(group);
+        Assertions.assertEquals(oldRelated.size()+1, newRelated.size());
+
 
     }
 
