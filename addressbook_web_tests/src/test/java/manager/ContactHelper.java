@@ -3,7 +3,6 @@ package manager;
 import model.ContactDate;
 import model.GroupData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -158,5 +157,30 @@ public class ContactHelper extends HelperBase {
 
     private void initContactModification(ContactDate contact) {
         click(By.cssSelector(String.format("a[href=\'edit.php?id=%s\']", contact.id())));
+    }
+
+    public void addContactInToGroup(ContactDate contact, GroupData group) {
+        openContactHomePage();
+        selectContact(contact);
+        selectToGroup(group);
+        addToContactInGroup();
+    }
+    private void selectToGroup(GroupData groupData) {
+        new Select(manager.driver.findElement(By.name("to_group"))).selectByValue(groupData.id());
+    }
+    private void addToContactInGroup() {
+        manager.driver.findElement(By.name("add")).click();
+    }
+
+    public void removeContactFromGroup(ContactDate contact) {
+        openContactHomePage();
+//        selectGroupById(group);
+        selectContact(contact);
+            manager.driver.findElement(By.name("remove")).click();
+        }
+
+    public void selectGroupById(GroupData group) {
+        openContactHomePage();
+        new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
     }
 }
