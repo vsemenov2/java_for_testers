@@ -3,9 +3,13 @@ package test;
 import common.CommonFunctions;
 import model.ContactDate;
 import model.GroupData;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Random;
+import java.util.Set;
 
 public class ContactAddOnGroup extends TestBase{
 
@@ -26,13 +30,33 @@ public class ContactAddOnGroup extends TestBase{
                         .withAddress(CommonFunctions.randomString(5))
                         .withHome(CommonFunctions.randomString(5)));
     }
-    var group = app.hbm().getGroupList();
-    var contact = app.hbm().getContactList();
-    var rnd = new Random();
-    var indexGroup = rnd.nextInt(group.size());
-    var indexContact = rnd.nextInt(contact.size());
-    app.contacts().addContactInToGroup(contact.get(indexContact), group.get(indexGroup));
+//    var group = app.hbm().getGroupList();
+//    var contact = app.hbm().getContactList();
+//    var rnd = new Random();
+//    var indexGroup = rnd.nextInt(group.size());
+//    var indexContact = rnd.nextInt(contact.size());
+//    app.contacts().addContactInToGroup(contact.get(indexContact), group.get(indexGroup));
+//
+//}
+    var groupList = app.hbm().getGroupList();
+    GroupData groupData = groupList.get(0);
+    var oldContactListInGroup = app.hbm().getContactsInGroup(groupData);
+    ContactDate contactAddGroup = null;
+    var contactListNotInGroup = app.hbm().getContactsNotInGroup();
+    if  ( (contactListNotInGroup != null) && (!contactListNotInGroup.isEmpty()) ) {
+        contactAddGroup = contactListNotInGroup.get(0);
+        app.contacts().addContactInToGroup(contactAddGroup, groupData);
+        var expectedContactListInGroup = app.hbm().getContactsInGroup(groupData);
+        var newContactListInGroup = new ArrayList<>(oldContactListInGroup);
+        newContactListInGroup.add(contactAddGroup);
 
+        Comparator<ContactDate> compareById = (o1, o2) -> {
+            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+        };
+        expectedContactListInGroup.sort(compareById);
+        newContactListInGroup.sort(compareById);
+
+        Assertions.assertEquals(expectedContactListInGroup, newContactListInGroup);
+    }
 }
-
 }

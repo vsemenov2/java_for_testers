@@ -115,4 +115,18 @@ static List<ContactDate> convertContactList(List<ContactRecord> records){
             return convertContactList(session.get(GroupRecord.class, group.id()).contacts);
         });
     }
+    public List<GroupData> getGroupsInContact(ContactDate contactDate) {
+        return sessionFactory.fromSession(session -> {
+            return convertList(session.get(ContactRecord.class, contactDate.id()).groups);
+        });
+    }
+
+    public List<ContactDate> getContactsNotInGroup() {
+        var allContacts = getContactList();
+        allContacts.removeIf(contactDate -> {
+            var groups = getGroupsInContact(contactDate);
+            return (groups != null) && (!groups.isEmpty());
+        });
+        return allContacts;
+    }
 }

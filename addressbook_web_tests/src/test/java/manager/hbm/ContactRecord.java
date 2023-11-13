@@ -1,11 +1,9 @@
 package manager.hbm;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "addressbook")
@@ -23,6 +21,9 @@ public class ContactRecord {
     public String home;
     public String mobile;
     public String work;
+    @ManyToMany(mappedBy = "contacts")
+    public List<GroupRecord> groups;
+
 
 //    public String addr_status = new String("");
 //    public String addr_long = new String("");

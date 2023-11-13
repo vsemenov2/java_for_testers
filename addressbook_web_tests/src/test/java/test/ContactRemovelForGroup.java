@@ -30,26 +30,26 @@ public class ContactRemovelForGroup extends TestBase{
     }
     ContactDate contact = null;
     GroupData group = null;
+    var groupList = app.hbm().getGroupList();
+
+    for (int i = 0; i < groupList.size() - 1; i++) {
+        var contactListInGroup = app.hbm().getContactsInGroup(groupList.get(i));
+        if ((contactListInGroup != null) && (!contactListInGroup.isEmpty())) {
+            contact = contactListInGroup.get(0);
+            group = groupList.get(i);
+
+        }
+    }
 
     if (contact == null) {
         var contactListNotGroup = app.hbm().getContactList();
         if ((contactListNotGroup != null) && (!contactListNotGroup.isEmpty())) {
-            var groupList = app.hbm().getGroupList();
             contact = contactListNotGroup.get(0);
             group = groupList.get(0);
             app.contacts().addContactInToGroup(contact, group);
         }
     }
-        var groupList = app.hbm().getGroupList();
 
-        for (int i = 0; i < groupList.size() - 1; i++) {
-            var contactListInGroup = app.hbm().getContactsInGroup(groupList.get(i));
-            if ((contactListInGroup != null) && (!contactListInGroup.isEmpty())) {
-                contact = contactListInGroup.get(0);
-                group = groupList.get(i);
-
-            }
-        }
             var oldContacts = app.hbm().getContactsInGroup(group);
             app.contacts().selectGroupById(group);
             app.contacts().removeContactFromGroup(contact);
