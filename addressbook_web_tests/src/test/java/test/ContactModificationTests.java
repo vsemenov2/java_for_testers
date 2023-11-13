@@ -13,7 +13,7 @@ public class ContactModificationTests extends TestBase{
     @Test
     void canModifyContact(){
         if (app.hbm().getContactCount() == 0){
-            app.hbm().createContact(new ContactDate("",
+            app.contacts().createContact(new ContactDate("",
                     "contact firstname",
                     "contact middlename",
                     "contact lastname",
