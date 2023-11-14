@@ -42,11 +42,15 @@ public class ContactAddOnGroup extends TestBase{
     GroupData groupData = groupList.get(0);
     var oldContactListInGroup = app.hbm().getContactsInGroup(groupData);
     ContactDate contactAddGroup = null;
+
     var contactListNotInGroup = app.hbm().getContactsNotInGroup();
     if  ( (contactListNotInGroup != null) && (!contactListNotInGroup.isEmpty()) ) {
         contactAddGroup = contactListNotInGroup.get(0);
         app.contacts().addContactInToGroup(contactAddGroup, groupData);
-        var expectedContactListInGroup = app.hbm().getContactsInGroup(groupData);
+    }
+
+
+    var expectedContactListInGroup = app.hbm().getContactsInGroup(groupData);
         var newContactListInGroup = new ArrayList<>(oldContactListInGroup);
         newContactListInGroup.add(contactAddGroup);
 
@@ -59,4 +63,4 @@ public class ContactAddOnGroup extends TestBase{
         Assertions.assertEquals(expectedContactListInGroup, newContactListInGroup);
     }
 }
-}
+
