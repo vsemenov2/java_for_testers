@@ -21,6 +21,8 @@ public class ContactRecord {
     public String home;
     public String mobile;
     public String work;
+
+    public String phone2;
     @ManyToMany(mappedBy = "contacts")
     public List<GroupRecord> groups;
 

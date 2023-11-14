@@ -183,4 +183,9 @@ public class ContactHelper extends HelperBase {
         openContactHomePage();
         new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
     }
+
+    public Object getPhones(ContactDate contact) {
+        return manager.driver.findElement(
+                By.xpath(String.format("//input[@id='%s']/../../td[6]", contact.id()))).getText();
+    }
 }

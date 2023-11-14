@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -73,7 +72,18 @@ static List<ContactDate> convertContactList(List<ContactRecord> records){
 
 
     private static ContactDate convertContact(ContactRecord record) {
-        return new ContactDate("" + record.id, record.firstname, record.middlename, record.lastname, record.nickname, record.company, record.title, record.address, record.home, record.mobile, record.work);
+        return new ContactDate("" + record.id,
+                record.firstname,
+                record.middlename,
+                record.lastname,
+                record.nickname,
+                record.company,
+                record.title,
+                record.address,
+                record.home,
+                record.mobile,
+                record.work,
+                record.phone2);
     }
 
     private static ContactRecord convertContact(ContactDate data) {
@@ -81,7 +91,15 @@ static List<ContactDate> convertContactList(List<ContactRecord> records){
         if ("".equals(id)){
             id = "0";
         }
-        return new ContactRecord(Integer.parseInt(id), data.firstname(), data.middlename(), data.lastname(), data.nickname(), data.company(), data.title(), data.address(), data.home(), data.mobile(), data.work());
+        return new ContactRecord(Integer.parseInt(id),
+                data.firstname(), data.middlename(), data.lastname(),
+                data.nickname(),
+                data.company(),
+                data.title(),
+                data.address(),
+                data.home(),
+                data.mobile(),
+                data.work());
     }
 
 

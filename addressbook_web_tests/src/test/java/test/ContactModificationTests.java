@@ -23,7 +23,7 @@ public class ContactModificationTests extends TestBase{
                     "contact address",
                     "",
                     "",
-                    ""));
+                    "", ""));
 
         }
         var oldContacts = app.hbm().getContactList();
