@@ -83,7 +83,11 @@ static List<ContactDate> convertContactList(List<ContactRecord> records){
                 record.home,
                 record.mobile,
                 record.work,
-                record.phone2);
+                record.phone2,
+                record.email,
+                record.email2,
+                record.email3,
+                record.address2);
     }
 
     private static ContactRecord convertContact(ContactDate data) {
@@ -92,14 +96,21 @@ static List<ContactDate> convertContactList(List<ContactRecord> records){
             id = "0";
         }
         return new ContactRecord(Integer.parseInt(id),
-                data.firstname(), data.middlename(), data.lastname(),
+                data.firstname(),
+                data.middlename(),
+                data.lastname(),
                 data.nickname(),
                 data.company(),
                 data.title(),
                 data.address(),
+                data.address2(),
                 data.home(),
                 data.mobile(),
-                data.work());
+                data.work(),
+                data.secondary(),
+                data.email(),
+                data.email2(),
+                data.email3());
     }
 
 

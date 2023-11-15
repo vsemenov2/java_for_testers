@@ -18,11 +18,16 @@ public class ContactRecord {
     public String company;
     public String title;
     public String address;
+    public String address2;
     public String home;
     public String mobile;
     public String work;
-
     public String phone2;
+    public  String email;
+    public  String email2;
+    public  String email3;
+
+
     @ManyToMany(mappedBy = "contacts")
     public List<GroupRecord> groups;
 
@@ -56,7 +61,9 @@ public class ContactRecord {
 
     public ContactRecord() {}
 
-    public ContactRecord(int id, String firstname, String middlename, String lastname, String nickname, String company, String title, String address, String home, String mobile, String work ) {
+    public ContactRecord(int id, String firstname, String middlename, String lastname, String nickname,
+                         String company, String title, String address, String address2, String home, String mobile, String work, String phone2, String email, String  email2, String email3 ) {
+
 
         this.id = id;
         this.firstname = firstname;
@@ -66,8 +73,13 @@ public class ContactRecord {
         this.company = company;
         this.title = title;
         this.address = address;
+        this.address2 = address2;
         this.home = home;
         this.mobile = mobile;
         this.work = work;
+        this.phone2 = phone2;
+        this.email = email;
+        this.email2 = email2;
+        this.email3 = email3;
     }
 }

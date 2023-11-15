@@ -67,7 +67,11 @@ public class ContactCreationTests extends TestBase {
                 .withCompany(CommonFunctions.randomString(5))
                 .withTitle(CommonFunctions.randomString(5))
                 .withAddress(CommonFunctions.randomString(5))
-                .withHome(CommonFunctions.randomString(5)));
+                .withHome(CommonFunctions.randomString(5))
+                .withEmail(CommonFunctions.randomString(5))
+                .withEmail2(CommonFunctions.randomString(5))
+                .withEmail3(CommonFunctions.randomString(5))
+                .withAddress2(CommonFunctions.randomString(5)));
     }
 
  @ParameterizedTest
@@ -105,7 +109,11 @@ public class ContactCreationTests extends TestBase {
              .withAddress("")
              .withHome("")
              .withMobile("")
-             .withWork(""));
+             .withWork("")
+             .withEmail("")
+             .withEmail2("")
+             .withEmail3("")
+             .withAddress2(""));
 
 
 
@@ -117,7 +125,7 @@ public class ContactCreationTests extends TestBase {
     public static List<ContactDate> negativeContactProvider() {
         var result = new ArrayList<ContactDate>(List.of(
                 new ContactDate("", "contact name'", "", "", "","",
-                        "","", "","", "", "")));
+                        "","", "","", "", "", "", "", "", "")));
 
         return result;
     }
