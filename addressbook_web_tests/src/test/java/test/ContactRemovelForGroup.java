@@ -49,6 +49,23 @@ public class ContactRemovelForGroup extends TestBase{
             app.contacts().addContactInToGroup(contact, group);
         }
     }
+    var contactAdd = new ContactDate()
+            .withFirstname(CommonFunctions.randomString(5))
+            .withMiddlename(CommonFunctions.randomString(5))
+            .withLastname(CommonFunctions.randomString(5))
+            .withNickname(CommonFunctions.randomString(5))
+            .withCompany(CommonFunctions.randomString(5))
+            .withTitle(CommonFunctions.randomString(5))
+            .withAddress(CommonFunctions.randomString(5))
+            .withHome(CommonFunctions.randomString(5));
+
+
+    if (contactAdd == null) {
+        app.contacts().createContact(contact);
+        contact = contact.withId(app.hbm().getIdContactByName(contact.firstname()));
+        app.contacts().addContactInToGroup(contact, group);
+        contact = contactAdd;
+    }
 
             var oldContacts = app.hbm().getContactsInGroup(group);
             app.contacts().selectGroupById(group);
