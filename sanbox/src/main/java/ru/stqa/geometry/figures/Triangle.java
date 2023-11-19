@@ -12,23 +12,23 @@ public record Triangle(double sideA, double sideB, double sideC) {
             throw new IllegalArgumentException("Сумма двух любых сторон должна быть не меньше третьей стороны");
         }
     }
-     public static void SquareTriangle(double sideA, double sideB, double sideC) {
-
-         var perimeterTriangle = getPerimeterTriangle(sideA, sideB, sideC);
-         var areaTriangle = getTriangle(sideA, sideB, sideC);
-        System.out.println(String.format("Периметр треугольника со сторонами %f  %f  %f  = %f ", sideA, sideB, sideC, perimeterTriangle));
-        System.out.println(String.format("Площадь треугольника по формуле Герона = %f ", areaTriangle));
+     public void SquareTriangle(Triangle triangle) {
+        System.out.println(String.format("Площадь треугольника по формуле Герона = %f ", triangle.areaTriangle()));
 
             }
 
 
-    public static double getPerimeterTriangle(double sideA, double sideB, double sideC) {
-        return (sideA + sideB + sideC);
+    public  double PerimeterTriangle() {
+        return (this.sideA + this.sideB + this.sideC);
     }
 
-    public static double getTriangle(double sideA, double sideB, double sideC) {
-         var  p = getPerimeterTriangle(sideA, sideB, sideC) / 2;
-         return Math.sqrt(p * (p - sideA) * (p - sideB) * (p - sideC));
+    public  double areaTriangle() {
+          return Math.sqrt(PerimeterTriangle()/2*(PerimeterTriangle()/2-this.sideA)*(PerimeterTriangle()/2-this.sideB)*(PerimeterTriangle()/2-this.sideC));
+    }
+
+    public void printTrianglePerimeter(Triangle triangle) {
+        System.out.println(String.format("Периметр треугольника со сторонами %f  %f  %f  = %f ", triangle.sideA, triangle.sideB, triangle.sideC, triangle.PerimeterTriangle()));
+
     }
     @Override
     public boolean equals(Object o) {

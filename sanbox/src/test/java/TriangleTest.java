@@ -5,13 +5,15 @@ import ru.stqa.geometry.figures.Triangle;
 public class TriangleTest {
     @Test
     void canCalculatePerimeterTriangle() {
-        Assertions.assertEquals(16.0, Triangle.getPerimeterTriangle(5., 5., 6.));
+            var triangle = new Triangle(4,5,6);
+            double result = triangle.areaTriangle();
+            Assertions.assertEquals(9.921567416492215, result);
+        }
 
-    }
 
     @Test
     void canCalculateTriangle() {
-        Assertions.assertEquals(14.696938456699069, Triangle.getTriangle(5.0, 6.0, 7.0));
+        Assertions.assertEquals(18, new  Triangle(5.0, 6.0, 7.0).PerimeterTriangle());
 
     }
 
