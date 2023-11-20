@@ -17,6 +17,7 @@ public class ApplicationManager {
     private HttpSessionHelper httpSessionHelper;
     private JamesCliHelper jamesCliHelper;
     private MailHelper mailHelper;
+    private RegistrationHelper registrationHelper;
 
 
     public void init(String browser, Properties properties) {
@@ -75,6 +76,13 @@ public class ApplicationManager {
 
     public String property(String name){
         return properties.getProperty(name);
+    }
+
+    public RegistrationHelper registration() {
+        if (registrationHelper == null) {
+            registrationHelper = new RegistrationHelper(this);
+        }
+        return registrationHelper;
     }
 
 
