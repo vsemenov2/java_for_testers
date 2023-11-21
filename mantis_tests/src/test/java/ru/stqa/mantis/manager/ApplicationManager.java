@@ -20,6 +20,7 @@ public class ApplicationManager {
     private RegistrationHelper registrationHelper;
     private JamesApiHelper jamesApiHelper;
     private DeveloperMailHelper developerMailHelper;
+    private RestApiHelper restApiHelper;
 
 
     public void init(String browser, Properties properties) {
@@ -88,9 +89,7 @@ public class ApplicationManager {
         }
         return developerMailHelper;
     }
-    public String property(String name){
-        return properties.getProperty(name);
-    }
+
 
     public RegistrationHelper registration() {
         if (registrationHelper == null) {
@@ -99,5 +98,16 @@ public class ApplicationManager {
         return registrationHelper;
     }
 
+
+    public RestApiHelper rest() {
+        if (restApiHelper == null) {
+            restApiHelper = new RestApiHelper(this);
+        }
+        return restApiHelper;
+    }
+
+    public String property(String name){
+        return properties.getProperty(name);
+    }
 
 }
