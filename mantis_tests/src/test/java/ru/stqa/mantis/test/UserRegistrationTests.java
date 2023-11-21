@@ -33,16 +33,12 @@ public class UserRegistrationTests extends TestBase {
 
         var messages = app.mail().receive(registration.email(), "password", Duration.ofSeconds(10));
         var text = messages.get(0).content();
-        var pattern = Pattern.compile("http://\\S*");
-        var matcher = pattern.matcher(text);
-        String url = null;
-        if (matcher.find()) {
-            url = text.substring(matcher.start(), matcher.end());
-        }
+        var url = CommonFunctions.extract(text);
         app.driver().get(url);
 
         app.registration().canConfirmUser(CommonFunctions.randomString(10), "password");
         app.http().login(registration.username(), "password");
         Assertions.assertTrue(app.http().isLoggedIn());
     }
+
 }

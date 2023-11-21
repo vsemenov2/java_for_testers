@@ -20,7 +20,6 @@ public class ApplicationManager {
     private RegistrationHelper registrationHelper;
     private JamesApiHelper jamesApiHelper;
     private DeveloperMailHelper developerMailHelper;
-    private UserHelper userHelper;
 
 
     public void init(String browser, Properties properties) {
@@ -100,11 +99,5 @@ public class ApplicationManager {
         return registrationHelper;
     }
 
-    public UserHelper user() {
-        if (userHelper == null) {
-            userHelper = new UserHelper(this);
-        }
-        return userHelper; //Лекция 9.4
-    }
 
 }
