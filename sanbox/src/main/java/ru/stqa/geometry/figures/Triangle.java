@@ -12,24 +12,24 @@ public record Triangle(double sideA, double sideB, double sideC) {
             throw new IllegalArgumentException("Сумма двух любых сторон должна быть не меньше третьей стороны");
         }
     }
+
      public void SquareTriangle(Triangle triangle) {
-        System.out.println(String.format("Площадь треугольника по формуле Герона = %f ", triangle.areaTriangle()));
-
+        System.out.println(String.format("Площадь треугольника по формуле Герона = %f ", triangle.area()));
             }
+     public void printTrianglePerimeter(Triangle triangle) {
+        System.out.println(String.format("Периметр треугольника со сторонами %f  %f  %f  = %f ", triangle.sideA, triangle.sideB, triangle.sideC, triangle.PerimeterTriangle()));
 
+    }
 
     public  double PerimeterTriangle() {
         return (this.sideA + this.sideB + this.sideC);
     }
 
-    public  double areaTriangle() {
+    public  double area() {
           return Math.sqrt(PerimeterTriangle()/2*(PerimeterTriangle()/2-this.sideA)*(PerimeterTriangle()/2-this.sideB)*(PerimeterTriangle()/2-this.sideC));
     }
 
-    public void printTrianglePerimeter(Triangle triangle) {
-        System.out.println(String.format("Периметр треугольника со сторонами %f  %f  %f  = %f ", triangle.sideA, triangle.sideB, triangle.sideC, triangle.PerimeterTriangle()));
 
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

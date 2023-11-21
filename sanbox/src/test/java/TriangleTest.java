@@ -6,7 +6,7 @@ public class TriangleTest {
     @Test
     void canCalculatePerimeterTriangle() {
             var triangle = new Triangle(4,5,6);
-            double result = triangle.areaTriangle();
+            double result = triangle.area();
             Assertions.assertEquals(9.921567416492215, result);
         }
 
