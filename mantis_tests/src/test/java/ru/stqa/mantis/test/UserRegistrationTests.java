@@ -1,10 +1,12 @@
 package ru.stqa.mantis.test;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import ru.stqa.mantis.common.CommonFunctions;
+import ru.stqa.mantis.model.DeveloperMailUser;
 import ru.stqa.mantis.model.UserRegistration;
 
 import java.time.Duration;
@@ -12,7 +14,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-public class UserRegistrationTests extends TestBase{
+public class UserRegistrationTests extends TestBase {
+
 
     public static List<UserRegistration> singleUser() {
         var name = CommonFunctions.randomString(10);
@@ -35,13 +38,11 @@ public class UserRegistrationTests extends TestBase{
         String url = null;
         if (matcher.find()) {
             url = text.substring(matcher.start(), matcher.end());
-                    }
+        }
         app.driver().get(url);
 
         app.registration().canConfirmUser(CommonFunctions.randomString(10), "password");
-        app.http().login(registration.username(),"password");
+        app.http().login(registration.username(), "password");
         Assertions.assertTrue(app.http().isLoggedIn());
     }
-
-
 }
