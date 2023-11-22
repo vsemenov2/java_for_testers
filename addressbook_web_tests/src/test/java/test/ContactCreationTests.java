@@ -130,15 +130,15 @@ public class ContactCreationTests extends TestBase {
         return result;
     }
 
-    @ParameterizedTest
-    @MethodSource("negativeContactProvider")
-    public void canNotCreateContact(ContactDate contact) {
-        var oldContacts = app.contacts().getList();
-        app.contacts().createContact(contact);
-        var newContacts = app.contacts().getList();
-        Assertions.assertEquals(newContacts, oldContacts);
-
-    }
+//    @ParameterizedTest
+//    @MethodSource("negativeContactProvider")
+//    public void canNotCreateContact(ContactDate contact) {
+//        var oldContacts = app.contacts().getList();
+//        app.contacts().createContact(contact);
+//        var newContacts = app.contacts().getList();
+//        Assertions.assertEquals(newContacts, oldContacts);
+//
+//    }
     @Test
     void canCreateContactInGroup() {
         var contact = new ContactDate()

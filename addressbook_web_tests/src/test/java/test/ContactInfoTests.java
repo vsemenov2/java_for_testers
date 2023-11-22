@@ -14,7 +14,7 @@ public class ContactInfoTests extends TestBase {
     @Test
     void testPhonesEmailsAddresses() {
         if (app.hbm().getContactCount() == 0) {
-            app.contacts().createContact(
+            app.hbm().createContact(
                     new ContactDate()
                             .withFirstname(CommonFunctions.randomString(5))
                             .withMiddlename(CommonFunctions.randomString(5))

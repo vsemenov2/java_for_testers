@@ -21,6 +21,7 @@ public class GroupHelper extends HelperBase {
         }
     }
 
+    @Step
     public void createGroup(GroupData group) {
         openGroupsPage();
         initGroupCreation();
@@ -35,6 +36,8 @@ public class GroupHelper extends HelperBase {
         removeSelectedGroups();
         returnToGroupsPage();
     }
+
+    @Step
     public void modifyGroup(GroupData group, GroupData modifiedGroup) {
         openGroupsPage();
         selectGroup(group);

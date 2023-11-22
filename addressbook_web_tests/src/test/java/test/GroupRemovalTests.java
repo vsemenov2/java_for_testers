@@ -15,7 +15,7 @@ public class GroupRemovalTests extends TestBase {
     public void canRemoveGroup() {
         Allure.step("Checking precondition", step -> {
             if (app.hbm().getGroupCount() == 0) {
-                app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+                app.groups().createGroup(new GroupData("", "group name", "group header", "group footer"));
             }
         });
         var oldGroups = app.hbm().getGroupList();

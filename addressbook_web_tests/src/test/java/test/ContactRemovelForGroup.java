@@ -14,10 +14,10 @@ public class ContactRemovelForGroup extends TestBase{
 @Test
     void canContactRemovalForGroup(){
     if (app.hbm().getGroupCount() == 0) {
-        app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+        app.groups().createGroup(new GroupData("", "group name", "group header", "group footer"));
     }
     if (app.hbm().getContactCount() == 0) {
-        app.contacts().createContact(
+        app.hbm().createContact(
                 new ContactDate()
                         .withFirstname(CommonFunctions.randomString(5))
                         .withMiddlename(CommonFunctions.randomString(5))

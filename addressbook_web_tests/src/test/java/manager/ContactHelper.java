@@ -1,5 +1,6 @@
 package manager;
 
+import io.qameta.allure.Step;
 import model.ContactDate;
 import model.GroupData;
 import org.openqa.selenium.By;
@@ -27,14 +28,14 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-
+@Step
     public void createContact(ContactDate contact) {
         openContactNewPage();
         fillContactForm(contact);
         submitContactCreation();
         openContactHomePage();
     }
-
+@Step
     public void createContactInGroup(ContactDate contact, GroupData group) {
         openContactNewPage();
         fillContactForm(contact);
@@ -113,7 +114,7 @@ public class ContactHelper extends HelperBase {
             checkbox.click();
         }
     }
-
+@Step
     public List<ContactDate> getList() {
         openContactHomePage();
         var contacts = new ArrayList<ContactDate>();
