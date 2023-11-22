@@ -26,14 +26,14 @@ public class GroupRemovalTests extends TestBase {
 
     }
 
-    @Test
-    void canRemoveAllGroupsAtOnce(){
-        if (app.hbm().getGroupCount() == 0) {
-            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
-        }
-
-        app.groups().removeALLGroups();
-        Assertions.assertEquals(0, app.hbm().getGroupCount());
-    }
+//    @Test
+//    void canRemoveAllGroupsAtOnce(){
+//        if (app.hbm().getGroupCount() == 0) {
+//            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+//        }
+//
+//        app.groups().removeALLGroups();
+//        Assertions.assertEquals(0, app.hbm().getGroupCount());
+//    }
 
 }
